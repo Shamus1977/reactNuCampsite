@@ -1,7 +1,7 @@
 import { div } from 'prelude-ls';
 import React, { Component } from 'react';
 import CampsiteInfo from './CampsiteInfoComponent';
-import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
+import {Card, CardImg, CardImgOverlay, CardTitle} from 'reactstrap';
 
 class Directory extends Component{
     constructor(props){
