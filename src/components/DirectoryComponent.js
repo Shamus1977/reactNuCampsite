@@ -1,5 +1,6 @@
 import { div } from 'prelude-ls';
 import React, { Component } from 'react';
+import CampsiteInfo from './CampsiteInfoComponent';
 import {Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 
 class Directory extends Component{
@@ -15,24 +16,7 @@ class Directory extends Component{
                 this.setState({selectedCampsite: campsite});
             }
 
-            renderSelectedCampsite(campsite){
-                if(campsite){
-                    return (
-                        <Card>
-                            <CardImg top src={campsite.image} alt={campsite.name} />
-                            <CardBody>
-                                <CardTitle>{campsite.name}</CardTitle>
-                                <CardText>{campsite.description}</CardText>
-                            </CardBody>
-                        </Card>
-                    );
-                }
-
-                return <div></div>;
-            }
         
-    
-
     render(){
 
         const directory = [
@@ -55,16 +39,13 @@ class Directory extends Component{
                 <div className='row'>
                     { directory }
                 </div>
-                <div className='row'>
-                    <div className='col-md-5 m-1'>
-                        {this.renderSelectedCampsite(this.state.selectedCampsite)};
-                    </div>
-                </div>
+                <CampsiteInfo campsite={this.state.selectedCampsite} />
             </div>
         );
     }
 
 }
 
-
+//remove 58 - 62. Add CampsiteInfo component instead. Pass this.state.selectedCampsite, in through props under 
+// the attribute 'campsite'. Make sure to import CampsiteInfo to this file.
 export default Directory;
