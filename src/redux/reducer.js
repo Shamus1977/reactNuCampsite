@@ -4,12 +4,12 @@ import {PARTNERS} from '../shared/partners';
 import {PROMOTIONS} from '../shared/promotions';
 
 export const initialState = {
-    campsites: CAMPSITES,
     comments: COMMENTS,
+    campsites: CAMPSITES,
     partners: PARTNERS,
     promotions: PROMOTIONS,
 }
 
-export const Reducer = (state = initialState, action) => {
+export const Reducer = (state = initialState, action) =>{
     return state;
 }
