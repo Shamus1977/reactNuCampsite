@@ -1,6 +1,6 @@
 
 import React, {Component} from 'react';
-import {Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button,  Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label, Col, Row} from 'reactstrap';
+import {Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button,  Modal, ModalHeader, ModalBody, Label, Col} from 'reactstrap';
 import {LocalForm, Control, Errors} from 'react-redux-form';
 import { Link } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ const minLength = len => val => val && (val.length >= len);
         )
     }
 
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, campsiteId}){
         if(comments){
             return (
                 <div className='col-md-5 m-1'>
@@ -34,7 +34,7 @@ const minLength = len => val => val && (val.length >= len);
                             { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}.</p>
                         ) 
                     })}
-                    <CommentForm />
+                    <CommentForm campsiteId={campsiteId} addComment={addComment} />
                  </div>
                  
             )
@@ -67,9 +67,9 @@ const minLength = len => val => val && (val.length >= len);
             });
         }
 
-        handleSubmit(values){
-            console.log('Current State is: '+ JSON.stringify(values));
-            alert('Current State is: '+ JSON.stringify(values));
+        handleSubmit(values) {
+            this.toggleModal();
+            this.props.addComment(this.props.campsiteId, values.rating, values.author, values.text);
         }
 
         render(){
@@ -124,9 +124,9 @@ const minLength = len => val => val && (val.length >= len);
                                     </Col>
                                 </div>
                                 <div className='form-group'>
-                                    <Label htmlFor="textArea" md={3}>Comment</Label>
+                                    <Label htmlFor="text" md={3}>Comment</Label>
                                     <Col md={10}>
-                                        <Control.textarea model='.textArea' id="textArea" name="textArea"
+                                        <Control.textarea model='.text' id="text" name="text"
                                             placeholder="Comment"
                                             className='form-control'   
                                         />
@@ -161,7 +161,12 @@ const minLength = len => val => val && (val.length >= len);
                     </div>
                     <div className='row'>
                         <RenderCampsite campsite ={props.campsite} />
-                        <RenderComments comments = {props.comments} />
+                        <RenderComments 
+                        comments={props.comments}
+                        addComment={props.addComment}
+                        campsiteId={props.campsite.id}
+                    />
+                         
                     </div>
                 </div>
             );
