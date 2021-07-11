@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Directory from './components/DirectoryComponent';
 import Main from './components/MainComponent'
 import {Provider} from 'react-redux';
 import {ConfigureStore} from './redux/configureStore';

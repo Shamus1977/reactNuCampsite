@@ -4,7 +4,7 @@ import {Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem, Button,  
 import {LocalForm, Control, Errors} from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import {Loading} from './LoadingComponent';
-import { baseURL } from '../shared/baseURL';
+import { baseUrl } from '../shared/baseUrl';
 import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 const required = val => val && val.length;  
@@ -18,10 +18,10 @@ const minLength = len => val => val && (val.length >= len);
                 <FadeTransform 
                     in 
                     transformProps={{
-                        exitTransform: 'scale(0.5) translateY(-50%)'
+                        exitTransform: 'scale(0.2) translateY(-10%)'
                     }}>
                     <Card>
-                        <CardImg top src={baseURL + campsite.image} alt={campsite.name} />
+                        <CardImg top src={baseUrl + campsite.image} alt={campsite.name} />
                         <CardBody>
                             <CardText>{campsite.description}</CardText>
                         </CardBody>
